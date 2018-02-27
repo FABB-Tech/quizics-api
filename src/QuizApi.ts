@@ -3,8 +3,12 @@ import * as bodyParser from 'body-parser'
 import { auth, db } from './database/firebase'
 import {
     createUser,
-    getUserById
+    getUserById,
+    deleteUser
 } from './controllers/users'
+import {
+  createQuestion
+} from './controllers/questions'
 
 class QuizApi {
   public app
@@ -24,6 +28,9 @@ class QuizApi {
 
     router.post('/users', createUser)
     router.get('/users/:id', getUserById)
+    router.delete('/users/:id', deleteUser)
+
+    router.post('/questions', createQuestion)
 
     this.app.use('/', router)
   }
